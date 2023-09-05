@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SettingsService } from '../services/settings.service';
 
+declare function customInitFunctions(): any;
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -8,4 +10,12 @@ import { Component } from '@angular/core';
 })
 export class PagesComponent {
 
+  public settingsService = inject(SettingsService);
+
+  ngOnInit(): void {
+    
+    customInitFunctions();
+    this.settingsService.getDataTheme();
+  }
+  
 }
